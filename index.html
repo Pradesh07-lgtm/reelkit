@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111318">
+<meta name="description" content="Free Instagram creator tools for captions, hashtags, links and text formatting.">
+<title>ReelKit — Free Instagram Creator Tools</title>
+<style>
+:root{--bg:#101116;--panel:#191b24;--panel2:#222532;--text:#f5f5fa;--muted:#aeb2c2;--accent:#c4b5fd;--accent2:#9f8af4;--line:#303341;--ok:#8be0b1;--danger:#ff9caa}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#242039 0,#101116 48%);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}a{color:var(--accent)}.wrap{max-width:1000px;margin:auto;padding:20px 16px 60px}.nav{display:flex;align-items:center;gap:12px;margin:8px 0 40px}.logo{width:44px;height:44px;border-radius:14px;background:var(--accent);color:#20133f;display:grid;place-items:center;font-weight:900;font-size:22px}.brand{font-size:20px;font-weight:800;letter-spacing:-.4px}.tag{font-size:12px;color:var(--muted)}.pill{margin-left:auto;border:1px solid #465345;background:#17251f;color:var(--ok);padding:5px 10px;border-radius:999px;font-size:12px;font-weight:700}.hero{text-align:center;max-width:700px;margin:0 auto 30px}.eyebrow{display:inline-block;border:1px solid var(--line);background:#191b24;padding:6px 12px;border-radius:999px;color:var(--accent);font-size:13px}.hero h1{font-size:clamp(34px,7vw,58px);line-height:1.05;letter-spacing:-2px;margin:18px 0}.hero p{color:var(--muted);margin:0 auto;max-width:560px}.card{background:rgba(25,27,36,.96);border:1px solid var(--line);border-radius:20px;padding:20px;margin:18px 0;box-shadow:0 12px 35px #0002}.card h2{font-size:19px;margin:0 0 5px}.sub{color:var(--muted);font-size:14px;margin:0 0 16px}.fieldlabel{display:block;font-size:13px;color:#d7d8e2;margin:12px 0 6px}input,textarea,select{width:100%;background:#101116;color:var(--text);border:1px solid #3a3d4d;border-radius:12px;padding:13px;font:inherit;outline:none}input:focus,textarea:focus{border-color:var(--accent)}textarea{min-height:105px;resize:vertical}button{border:0;border-radius:12px;padding:12px 15px;background:var(--accent);color:#20133f;font-weight:800;font-size:14px;cursor:pointer}button.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}button:active{transform:scale(.99)}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.notice{font-size:13px;color:var(--muted);margin-top:10px}.status{font-size:13px;margin-top:10px;color:var(--ok);overflow-wrap:anywhere}.status.err{color:var(--danger)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.tool{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;min-width:0}.tool .ico{font-size:22px;margin-bottom:8px}.tool h3{margin:0 0 4px;font-size:17px}.tool p{margin:0;color:var(--muted);font-size:13px}.tool .actions button{flex:1}.full{grid-column:1/-1}.result{display:none;background:#101116;border:1px dashed #4a4567;border-radius:12px;padding:12px;margin-top:12px;overflow-wrap:anywhere}.result.show{display:block}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:35px}.small{font-size:12px;color:var(--muted)}@media(max-width:620px){.grid{grid-template-columns:1fr}.wrap{padding:14px 12px 40px}.nav{margin-bottom:30px}.card{padding:16px}.hero h1{letter-spacing:-1.2px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="nav"><div class="logo">R</div><div><div class="brand">ReelKit</div><div class="tag">Free Instagram Creator Tools</div></div><div class="pill">FREE TOOLS</div></header>
+<section class="hero"><span class="eyebrow">✦ Made for creators</span><h1>Your Instagram<br><span style="color:var(--accent)">toolkit.</span></h1><p>Format captions, organize hashtags, copy text and validate Instagram links — all from one simple page.</p></section>
+
+<section class="card">
+<h2>🔗 Instagram Link Helper</h2><p class="sub">Paste a public Instagram post, Reel or profile URL to validate it and open it.</p>
+<label class="fieldlabel" for="igurl">Instagram URL</label><input id="igurl" type="url" placeholder="https://www.instagram.com/reel/..." autocomplete="url">
+<div class="actions"><button onclick="validateLink()">Check link</button><button class="secondary" onclick="copyValue('igurl','Link copied')">Copy link</button><button class="secondary" onclick="openLink()">Open Instagram</button></div><div id="linkstatus" class="status" aria-live="polite"></div>
+<p class="notice">Note: this helper validates and opens links. It does not automatically extract Instagram captions or download media.</p>
+</section>
+
+<div class="grid">
+<section class="tool"><div class="ico">✍️</div><h3>Caption Copier</h3><p>Paste any caption text, then copy it with its line breaks and emojis.</p><label class="fieldlabel" for="caption">Caption text</label><textarea id="caption" placeholder="Paste caption here..."></textarea><div class="actions"><button onclick="copyValue('caption','Caption copied')">Copy caption</button><button class="secondary" onclick="clearField('caption')">Clear</button></div><div id="captionstatus" class="status" aria-live="polite"></div></section>
+
+<section class="tool"><div class="ico">#️⃣</div><h3>Hashtag Formatter</h3><p>Turn words into hashtags and remove duplicates.</p><label class="fieldlabel" for="tags">Words or hashtags</label><textarea id="tags" placeholder="instagram reels creator tips"></textarea><div class="actions"><button onclick="formatTags()">Format hashtags</button><button class="secondary" onclick="copyValue('tagresult','Hashtags copied')">Copy</button></div><div id="tagresult" class="result"></div><div id="tagstatus" class="status" aria-live="polite"></div></section>
+
+<section class="tool"><div class="ico">🪄</div><h3>Caption Formatter</h3><p>Trim extra spaces and normalize blank lines without removing emojis.</p><label class="fieldlabel" for="rawcaption">Caption to clean</label><textarea id="rawcaption" placeholder="Paste a messy caption..."></textarea><div class="actions"><button onclick="formatCaption()">Clean text</button><button class="secondary" onclick="copyValue('cleanresult','Formatted text copied')">Copy</button></div><div id="cleanresult" class="result"></div><div id="cleanstatus" class="status" aria-live="polite"></div></section>
+
+<section class="tool"><div class="ico">🧾</div><h3>Bio & Text Copier</h3><p>Draft or paste a bio and copy it, ready to use on your profile.</p><label class="fieldlabel" for="bio">Bio / text</label><textarea id="bio" maxlength="500" placeholder="Write or paste your bio..."></textarea><div class="small"><span id="biocount">0</span>/500 characters</div><div class="actions"><button onclick="copyValue('bio','Text copied')">Copy text</button><button class="secondary" onclick="clearField('bio')">Clear</button></div><div id="biostatus" class="status" aria-live="polite"></div></section>
+
+<section class="tool"><div class="ico">🖼️</div><h3>Thumbnail Viewer</h3><p>Open a post or Reel in Instagram to view its available cover image.</p><label class="fieldlabel" for="thumburl">Instagram post / Reel URL</label><input id="thumburl" type="url" placeholder="Paste Instagram URL">
+<div class="actions"><button onclick="thumbnailOpen()">Open post</button><button class="secondary" onclick="copyValue('thumburl','URL copied')">Copy URL</button></div><div id="thumbstatus" class="status" aria-live="polite"></div></section>
+
+<section class="tool"><div class="ico">⬇️</div><h3>Media Link Helper</h3><p>Quickly open a post you have permission to access. No files are downloaded by this demo.</p><label class="fieldlabel" for="mediaurl">Instagram URL</label><input id="mediaurl" type="url" placeholder="Paste public post or Reel URL">
+<div class="actions"><button onclick="mediaOpen()">Open source</button><button class="secondary" onclick="copyValue('mediaurl','URL copied')">Copy URL</button></div><div id="mediastatus" class="status" aria-live="polite"></div></section>
+</div>
+
+<section class="card"><h2>❓ Frequently asked questions</h2>
+<p><b>Is ReelKit free?</b><br><span class="small">These browser-based tools are free to use. Hosting and third-party API terms can change.</span></p>
+<p><b>Why doesn't the site automatically fetch every Instagram caption?</b><br><span class="small">Instagram restricts automated access. Automatic extraction requires an authorized API or a reliable provider. This starter version does not claim to extract data it cannot access.</span></p>
+<p><b>Can I use it on my phone?</b><br><span class="small">Yes. The page is responsive and works in a modern mobile browser.</span></p>
+<p><b>Does it download videos?</b><br><span class="small">No. The media helper only opens the source URL. Only download content you own or are authorized to save, using permitted methods.</span></p></section>
+<footer class="footer">ReelKit is an independent project and is not affiliated with Instagram or Meta.<br>Use responsibly · Your text tools run in your browser.</footer>
+</div>
+<script>
+function el(id){return document.getElementById(id)}
+function say(id,msg,err=false){const n=el(id);if(!n)return;n.textContent=msg;n.className='status'+(err?' err':'')}
+function getUrl(id){const raw=el(id).value.trim();if(!raw){return {error:'Paste a URL first.'}};try{const u=new URL(raw);if(u.protocol!=='https:'&&u.protocol!=='http:')return {error:'Use a valid web URL.'};if(u.hostname!=='instagram.com'&&!u.hostname.endsWith('.instagram.com'))return {error:'For safety, enter an instagram.com URL.'};return {url:u.href}}catch(e){return {error:'That URL does not look valid.'}}}
+function validateLink(){const r=getUrl('igurl');say('linkstatus',r.error||'Looks like an Instagram URL. Use Open Instagram to visit it.',!!r.error)}
+function copyText(text,statusId,success){if(!text.trim()){say(statusId,'Nothing to copy yet.',true);return}if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(()=>say(statusId,success)).catch(()=>fallbackCopy(text,statusId,success))}else fallbackCopy(text,statusId,success)}
+function fallbackCopy(text,statusId,success){const t=document.createElement('textarea');t.value=text;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');say(statusId,success)}catch(e){say(statusId,'Copy failed. Please select and copy the text manually.',true)}t.remove()}
+function copyValue(id,msg){copyText(el(id).value,id==='igurl'?'linkstatus':id==='caption'?'captionstatus':id==='tags'?'tagstatus':id==='rawcaption'?'cleanstatus':id==='bio'?'biostatus':id==='thumburl'?'thumbstatus':'mediastatus',msg)}
+function openLink(){const r=getUrl('igurl');if(r.error){say('linkstatus',r.error,true);return}window.open(r.url,'_blank','noopener,noreferrer');say('linkstatus','Opening Instagram in a new tab.')}
+function formatTags(){const words=el('tags').value.match(/[\p{L}\p{N}_]+/gu)||[];const seen=new Set();const out=[];for(const w of words){const tag='#'+w.toLowerCase();if(!seen.has(tag)){seen.add(tag);out.push(tag)}}el('tagresult').textContent=out.join(' ');el('tagresult').classList.add('show');say('tagstatus',out.length?out.length+' unique hashtags ready.':'Enter some words first.',!out.length)}
+function formatCaption(){const v=el('rawcaption').value.replace(/\r\n?/g,'\n').split('\n').map(s=>s.replace(/[ \t]+$/g,'').replace(/^[ \t]+/g,'')).join('\n').replace(/\n{3,}/g,'\n\n').trim();el('cleanresult').textContent=v;el('cleanresult').classList.add('show');say('cleanstatus',v?'Text cleaned.':'Enter some text first.',!v)}
+function clearField(id){el(id).value='';if(id==='caption')say('captionstatus','');if(id==='bio')say('biostatus','');}
+function thumbnailOpen(){const r=getUrl('thumburl');if(r.error){say('thumbstatus',r.error,true);return}window.open(r.url,'_blank','noopener,noreferrer');say('thumbstatus','Opened the Instagram source. Cover-image extraction is not enabled in this starter version.')}
+function mediaOpen(){const r=getUrl('mediaurl');if(r.error){say('mediastatus',r.error,true);return}window.open(r.url,'_blank','noopener,noreferrer');say('mediastatus','Opened the original Instagram URL. No download was started.')}
+el('bio').addEventListener('input',()=>el('biocount').textContent=el('bio').value.length);
+</script>
+</body>
+</html>
