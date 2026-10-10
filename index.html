@@ -62,5 +62,28 @@ function thumbnailOpen(){const r=getUrl('thumburl');if(r.error){say('thumbstatus
 function mediaOpen(){const r=getUrl('mediaurl');if(r.error){say('mediastatus',r.error,true);return}window.open(r.url,'_blank','noopener,noreferrer');say('mediastatus','Opened the original Instagram URL. No download was started.')}
 el('bio').addEventListener('input',()=>el('biocount').textContent=el('bio').value.length);
 </script>
+  
+<button class="secondary" onclick="testReelKitApi()">Test API connection</button>
+<div id="apistatus" class="status" aria-live="polite"></div>
+<script>
+async function testReelKitApi(){
+  const s = document.getElementById('apistatus');
+  s.textContent = 'Testing connection...';
+  s.className = 'status';
+  try {
+    const r = await fetch('https://reelkit-api.workinghome799.workers.dev/api/test');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    s.textContent = d.ok
+      ? 'Connected! Worker is online. Instagram extraction is not configured yet.'
+      : 'Worker responded, but the test was unsuccessful.';
+    s.className = 'status' + (d.ok ? '' : ' err');
+  } catch(e) {
+    s.textContent = 'Connection failed. Check the Worker URL and try again.';
+    s.className = 'status err';
+  }
+}
+</script>
+  
 </body>
 </html>
